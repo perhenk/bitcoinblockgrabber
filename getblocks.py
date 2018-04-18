@@ -11,7 +11,7 @@ from blockchain import blockexplorer
 
 # Sett opp klart til skriving til CSV fil
 fieldnames = ['block_hash', 'block_height','size','relayed_by','datetime','timestamp','tx_index','from_address','to_address', 'from_value','to_value']
-f = open('test2.csv','w')
+f = open('bitcoin_transactions.csv','w')
 csvf = csv.DictWriter(f,fieldnames=fieldnames)
 csvf.writeheader()
 
@@ -22,6 +22,7 @@ for block_hash in blocklist:
 
     # Hent blokk
     block = blockexplorer.get_block(block_hash)
+    print("Getting block %s" % block_hash)
     
     # Travaser alle transaskjoner i blokkken
     for t in block.transactions:
@@ -46,7 +47,6 @@ for block_hash in blocklist:
                     if inn.sequence != 0:
                         row["from_address"] = inn.address
                         row["from_value"] = inn.value / (10.0**8.0)
-                    else: print(inn.__dict__)
 
                     csvf.writerow(row)
 
