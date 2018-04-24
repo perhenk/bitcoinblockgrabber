@@ -52,8 +52,9 @@ for block_hash in blocklist:
 
 
                 except:
-                    print("Can not write this block")
-                    print(inn.__dict__)
+                    pass
+                    #print("Can not write this block")
+                    #print(inn.__dict__)
 
 # Lukk file
 
